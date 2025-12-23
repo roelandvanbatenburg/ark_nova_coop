@@ -1,0 +1,17 @@
+---
+services:
+  ark_nova_coop:
+    build:
+      context: .
+    user: root
+    environment:
+      DATABASE_PATH: /data/data.db
+      PHX_HOST: localhost
+      SECRET_KEY_BASE: ay2Tn1rV+Q3OdNnSy/kCGTdL6iGzSXN8zm1g4vac8Jn1OHnvdnVrYrgeUNebFK5O
+    volumes:
+      - data:/data
+    ports:
+      - 4000:4000
+
+volumes:
+  data:
