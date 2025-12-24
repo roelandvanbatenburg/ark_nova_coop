@@ -5,6 +5,11 @@ defmodule ArkNovaCoop.Release do
   """
   @app :ark_nova_coop
 
+  @doc """
+  Runs all pending migrations for all configured repositories.
+
+  This is typically called from a release task or deploy script.
+  """
   def migrate do
     load_app()
 
@@ -13,6 +18,13 @@ defmodule ArkNovaCoop.Release do
     end
   end
 
+  @doc """
+  Rolls back the given repository to a specific migration version.
+
+  ## Parameters
+    - repo: The repository module to rollback
+    - version: The migration version number to rollback to
+  """
   def rollback(repo, version) do
     load_app()
     {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
